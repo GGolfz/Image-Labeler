@@ -74,27 +74,29 @@ const Home = () => {
       <h2>Image List</h2>
       <div className="file-box">
       {
-        imageList.map((e,index)=><li key={index}>{e.name} <button onClick={()=>loadSaveImage(index)}>load</button></li>)
+        imageList.map((e,index)=><li key={index}>{e.name} <button className="pointer" onClick={()=>loadSaveImage(index)}>load</button></li>)
       }
       </div>
       <h2>Label List</h2>
       <div className="file-box">
       {
-        data.map((e,index)=><li key={index}>{e.filename}: {e.class_name} <span onClick={()=>removeCrop(index)}>X</span></li>)
+        data.map((e,index)=><li key={index}>{e.filename}: {e.class_name} <span className="pointer" onClick={()=>removeCrop(index)}>X</span></li>)
       }
       </div>
     </div>
     <div className="column right">
-      <input type="file" onChange={uploadImage} accept="image/*" />
-      <div className="cropZone">
+      <div className="mr">
+      <button className="pointer" onClick={exportData}>Export</button>
+      </div>
+      <input  className="mr pointer" type="file" onChange={uploadImage} accept="image/*" />
+      <div className="cropZone mr">
       <ReactCrop
               src={currentImg?.img}
               crop={crop}
               onChange={(_,percentCrop) => setCrop(percentCrop)}
               onComplete={getCropImage}
       />
-      <button onClick={saveCrop}>Save</button>
-      <button onClick={exportData}>Export</button>
+      <button className="mr pointer" onClick={saveCrop}>Save</button>
       </div>
     </div>
   </div>
@@ -124,9 +126,15 @@ const Home = () => {
    .right{
      width: 80vw;
    }
+   .mr {
+     margin: .25rem 0;
+   }
    .cropZone {
      width: 30vw;
      height: 30vh;
+   }
+   .pointer {
+     cursor: pointer;
    }
    ` 
   }
